@@ -1,6 +1,6 @@
 [![License](https://poser.pugx.org/hexarchium/zend-code-integration/license.svg)](https://packagist.org/packages/hexarchium/zend-code-integration)
 [![Total Downloads](https://poser.pugx.org/hexarchium/zend-code-integration/downloads.svg)](https://packagist.org/packages/hexarchium/zend-code-integration)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/06baafe6-94f0-4f01-8a9b-153f40983fdc/mini.png)](https://insight.sensiolabs.com/projects/06baafe6-94f0-4f01-8a9b-153f40983fdc)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/210ddc1a-f8ae-42d3-80de-f04b4a4c8458/mini.png)](https://insight.sensiolabs.com/projects/210ddc1a-f8ae-42d3-80de-f04b4a4c8458)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hexarchium/zend-code-integration/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hexarchium/zend-code-integration/?branch=master)
 [![Build Status](https://travis-ci.org/hexarchium/zend-code-integration.svg?branch=master)](https://travis-ci.org/hexarchium/zend-code-integration)
 

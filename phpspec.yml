@@ -1,0 +1,6 @@
+suites:
+  default:
+    namespace: Hexarchium\ZendCodeIntegration
+    psr4_prefix: Hexarchium\ZendCodeIntegration
+extensions:
+  Cjm\PhpSpec\Extension\TypeHintedMethodsExtension: ~

@@ -6,7 +6,6 @@ use Hexarchium\ZendCodeIntegration\Projector\ClassStructureProjector;
 
 class ClassStructureProjectorFactory
 {
-
     public function factory()
     {
         return new ClassStructureProjector();

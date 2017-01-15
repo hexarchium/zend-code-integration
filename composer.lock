@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22a520157d5f5c38a73bcbf9ff046a18",
-    "content-hash": "af0ee8eae5fbafea15ac088a50fa5ac5",
+    "hash": "0a3b5e3296ab466899085624f9f9ef3d",
+    "content-hash": "0102d28846dbad3dd35ac098024117da",
     "packages": [
         {
             "name": "hexarchium/code-domain",
-            "version": "v0.2.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hexarchium/code-domain.git",
-                "reference": "32224265d3a4ed0b43d9d04987eca1ed7c85a018"
+                "reference": "2f1f0c1993713c72e3185968c7852bc596b69508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hexarchium/code-domain/zipball/32224265d3a4ed0b43d9d04987eca1ed7c85a018",
-                "reference": "32224265d3a4ed0b43d9d04987eca1ed7c85a018",
+                "url": "https://api.github.com/repos/hexarchium/code-domain/zipball/2f1f0c1993713c72e3185968c7852bc596b69508",
+                "reference": "2f1f0c1993713c72e3185968c7852bc596b69508",
                 "shasum": ""
             },
             "require-dev": {

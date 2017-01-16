@@ -33,6 +33,8 @@ class ClassStructureProjector
         $file->setClass($class);
 
         $sourcePath = $this->projectSourceLocationStrategy->getSourcePath($file);
+
+        mkdir(dirname($sourcePath), 0777, true);
         file_put_contents($sourcePath, $file->generate());
     }
 }

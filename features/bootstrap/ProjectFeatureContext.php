@@ -1,5 +1,4 @@
 <?php
-use Symfony\Component\Process\Process;
 
 /**
  * Copyright
@@ -8,9 +7,6 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
 {
     /** @var  string */
     private $workingDir;
-
-    /** @var Process */
-    private $process;
 
     /**
      * Cleans test folders in the temporary directory.
@@ -50,28 +46,24 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
     }
 
     /**
-     * Prepares test folders in the temporary directory.
-     *
-     * @BeforeScenario
-     */
-    public function prepareTestFolders()
-    {
-        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR .
-            md5(microtime() . rand(0, 10000));
-
-        mkdir($dir . '/src', 0777, true);
-
-        $this->workingDir = $dir;
-        $this->process = new Process(null);
-        $this->process->setTimeout(20);
-    }
-
-    /**
      * @Then I should see new file at :arg1 in project
      * @param $arg1
      */
     public function iShouldSeeNewFileAtInProject($arg1)
     {
         throw new \Behat\Behat\Tester\Exception\PendingException();
+    }
+
+    /**
+     * Prepares test folders in the temporary directory.
+     *
+     * @BeforeScenario
+     */
+    public function prepareTestFolders()
+    {
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR;
+        mkdir($dir . '/src', 0777, true);
+
+        $this->workingDir = $dir;
     }
 }

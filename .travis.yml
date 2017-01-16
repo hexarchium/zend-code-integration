@@ -11,3 +11,4 @@ before_script:
 
 script:
   - docker-compose run php php vendor/bin/phpspec run
+  - docker-compose run php php vendor/bin/behat

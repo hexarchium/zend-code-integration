@@ -1,5 +1,4 @@
 <?php
-
 namespace Hexarchium\ZendCodeIntegration\Projector;
 
 use Hexarchium\CodeDomain\Model\ClassStructure\Events\ClassStructureAdded;

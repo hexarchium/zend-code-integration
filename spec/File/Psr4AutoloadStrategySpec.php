@@ -27,6 +27,6 @@ class Psr4AutoloadStrategySpec extends ObjectBehavior
         $class->setNamespaceName('Foo\\Bar\\');
         $fileGenerator->getClass()->willReturn($class);
 
-        $this->calculatePosition($fileGenerator)->shouldReturn('/Test.php');
+        $this->calculatePosition($fileGenerator)->shouldReturn('Test.php');
     }
 }

@@ -62,7 +62,7 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
     public function prepareTestFolders()
     {
         $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR;
-        mkdir($dir . '/src', 0777, true);
+        @mkdir($dir . 'src/', 0777, true);
 
         $this->workingDir = $dir;
     }

@@ -7,6 +7,7 @@ namespace Helpers;
 use Hexarchium\ZendCodeIntegration\Factory\ClassStructureProjectorFactory;
 use Hexarchium\ZendCodeIntegration\Factory\ProjectSourceLocationStrategyFactory;
 use Hexarchium\ZendCodeIntegration\File\AutoloadStrategyInterface;
+use Hexarchium\ZendCodeIntegration\File\ProjectSourceLocationStrategy;
 use Hexarchium\ZendCodeIntegration\File\Psr0AutoloadStrategy;
 use Hexarchium\ZendCodeIntegration\File\Psr4AutoloadStrategy;
 use Hexarchium\ZendCodeIntegration\Projector\ClassStructureProjector;
@@ -20,15 +21,14 @@ class Container extends \ArrayObject implements ContainerInterface
     {
         $container = new self();
 
-        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR .
-            md5(microtime() . rand(0, 10000));
-
-        mkdir($dir . '/src', 0777, true);
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR;
+        mkdir($dir . 'src/', 0777, true);
 
         $container->offsetSet(self::BASE_PATH, $dir);
 
         $container->initializeAutoloadStrategy();
         $container->initializeFactory();
+        $container->initializeServices();
         $container->initializeProjector();
 
         return $container;
@@ -79,13 +79,23 @@ class Container extends \ArrayObject implements ContainerInterface
         );
     }
 
+    private function initializeServices()
+    {
+        $this->offsetSet(
+            ProjectSourceLocationStrategy::class,
+            $this->get(ProjectSourceLocationStrategyFactory::class)->factory(
+                $this->get(self::BASE_PATH),
+                $this->get(AutoloadStrategyInterface::class)
+            )
+        );
+    }
+
     public function initializeProjector()
     {
         $this->offsetSet(
             ClassStructureProjector::class,
-            $this->get(ProjectSourceLocationStrategyFactory::class)->factory(
-                $this->get(self::BASE_PATH),
-                $this->get(AutoloadStrategyInterface::class)
+            $this->get(ClassStructureProjectorFactory::class)->factory(
+                $this->get(ProjectSourceLocationStrategy::class)
             )
         );
     }

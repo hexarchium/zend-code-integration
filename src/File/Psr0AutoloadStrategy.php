@@ -13,6 +13,6 @@ class Psr0AutoloadStrategy implements AutoloadStrategyInterface
 
         $path = str_replace('\\', '/', $fullname) . '.php';
 
-        return substr($path, 0, 1) == '/' ? $path : '/' . $path;
+        return substr($path, 0, 1) == '/' ? substr($path, 1, -1) : $path;
     }
 }

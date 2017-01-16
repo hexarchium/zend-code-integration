@@ -25,6 +25,6 @@ class ProjectSourceLocationStrategy
 
     public function getSourcePath(FileGenerator $fileGenerator): string
     {
-        return $this->sourcePath . '/src' . $this->autoloadStrategy->calculatePosition($fileGenerator);
+        return $this->sourcePath . 'src/' . $this->autoloadStrategy->calculatePosition($fileGenerator);
     }
 }

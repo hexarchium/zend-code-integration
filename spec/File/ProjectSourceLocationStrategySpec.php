@@ -14,7 +14,7 @@ class ProjectSourceLocationStrategySpec extends ObjectBehavior
     {
         /** @var FileGenerator $fileGenerator */
         $fileGenerator = Argument::type(FileGenerator::class);
-        $autoloadStrategy->calculatePosition($fileGenerator)->willReturn('/Test.php');
+        $autoloadStrategy->calculatePosition($fileGenerator)->willReturn('Test.php');
 
         $this->beConstructedWith('', $autoloadStrategy);
     }
@@ -26,6 +26,6 @@ class ProjectSourceLocationStrategySpec extends ObjectBehavior
 
     function it_should_have_source_path(FileGenerator $fileGenerator)
     {
-        $this->getSourcePath($fileGenerator)->shouldReturn('/src/Test.php');
+        $this->getSourcePath($fileGenerator)->shouldReturn('src/Test.php');
     }
 }

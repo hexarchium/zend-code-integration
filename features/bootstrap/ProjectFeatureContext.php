@@ -51,7 +51,9 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
      */
     public function iShouldSeeNewFileAtInProject($arg1)
     {
-        throw new \Behat\Behat\Tester\Exception\PendingException();
+        if (!file_exists($this->workingDir . $arg1)) {
+            throw new \Exception("File not exists in: " . $this->workingDir . $arg1);
+        }
     }
 
     /**

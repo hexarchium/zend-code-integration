@@ -25,17 +25,16 @@ class ClassStructureProjectorSpec extends ObjectBehavior
         ProjectSourceLocationStrategy $projectSourceLocationStrategy,
         ClassStructureAddedInterface $classStructureAdded
     ) {
-        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'phpspec' . DIRECTORY_SEPARATOR .
-            md5(microtime() . rand(0, 10000));
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'behat' . DIRECTORY_SEPARATOR;
 
-        mkdir($dir . '/src/Foo', 0777, true);
+        mkdir($dir . 'src/Foo/', 0777, true);
 
         /** @var FileGenerator $fileGenerator */
         $fileGenerator = Argument::type(FileGenerator::class);
         $projectSourceLocationStrategy
             ->getSourcePath($fileGenerator)
             ->willReturn(
-                $dir . '/src/Foo/Bar.php'
+                $dir . 'src/Foo/Bar.php'
             );
         $this->beConstructedWith($projectSourceLocationStrategy);
 
@@ -43,6 +42,6 @@ class ClassStructureProjectorSpec extends ObjectBehavior
         $classStructureAdded->getNamespace()->shouldBeCalled();
 
         $this->onClassCreated($classStructureAdded)->shouldReturn(null);
-        unlink($dir . '/src/Foo/Bar.php');
+        unlink($dir . 'src/Foo/Bar.php');
     }
 }

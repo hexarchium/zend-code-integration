@@ -3,4 +3,5 @@ default:
     default:
       contexts:
         - FeatureContext: ~
+        - ProjectFeatureContext: ~
 #      services: "Helpers\\Container::factory"

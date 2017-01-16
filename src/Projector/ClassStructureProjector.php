@@ -1,16 +1,27 @@
 <?php
 namespace Hexarchium\ZendCodeIntegration\Projector;
 
-use Hexarchium\CodeDomain\Model\ClassStructure\Events\ClassStructureAdded;
+use Hexarchium\ZendCodeIntegration\Events\ClassStructureAddedInterface;
+use Hexarchium\ZendCodeIntegration\File\ProjectSourceLocationStrategy;
 use Zend\Code\Generator\ClassGenerator;
 use Zend\Code\Generator\FileGenerator;
 
 class ClassStructureProjector
 {
-    public function onClassCreated(ClassStructureAdded $classStructureAdded)
+    /**
+     * @var ProjectSourceLocationStrategy
+     */
+    private $projectSourceLocationStrategy;
+
+    public function __construct(ProjectSourceLocationStrategy $projectSourceLocationStrategy)
     {
-        $name = $classStructureAdded->getPayload()['name'];
-        $namespaceName = $classStructureAdded->getPayload()['namespace'];
+        $this->projectSourceLocationStrategy = $projectSourceLocationStrategy;
+    }
+
+    public function onClassCreated(ClassStructureAddedInterface $classStructureAdded)
+    {
+        $name = $classStructureAdded->getName();
+        $namespaceName = $classStructureAdded->getNamespace();
 
         $class = new ClassGenerator();
         $class->setName($name)
@@ -20,5 +31,8 @@ class ClassStructureProjector
 
         $file = new FileGenerator();
         $file->setClass($class);
+
+        $sourcePath = $this->projectSourceLocationStrategy->getSourcePath($file);
+        file_put_contents($sourcePath, $file->generate());
     }
 }

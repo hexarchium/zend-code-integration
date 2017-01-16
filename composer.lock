@@ -4,42 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0a3b5e3296ab466899085624f9f9ef3d",
-    "content-hash": "0102d28846dbad3dd35ac098024117da",
+    "hash": "98d55b64ebfdd05e071f06f35e179219",
+    "content-hash": "b9cd479998102ef0821c82835cc76923",
     "packages": [
-        {
-            "name": "hexarchium/code-domain",
-            "version": "v0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hexarchium/code-domain.git",
-                "reference": "2f1f0c1993713c72e3185968c7852bc596b69508"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hexarchium/code-domain/zipball/2f1f0c1993713c72e3185968c7852bc596b69508",
-                "reference": "2f1f0c1993713c72e3185968c7852bc596b69508",
-                "shasum": ""
-            },
-            "require-dev": {
-                "behat/behat": "^3.3",
-                "ciaranmcnulty/phpspec-typehintedmethods": "^2.0",
-                "phpspec/phpspec": "^3.2",
-                "phpunit/phpunit": "5.5.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Hexarchium\\CodeDomain\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Code domain management",
-            "time": "2017-01-07 00:00:00"
-        },
         {
             "name": "zendframework/zend-code",
             "version": "3.1.0",

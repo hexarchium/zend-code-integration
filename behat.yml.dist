@@ -4,4 +4,6 @@ default:
       contexts:
         - FeatureContext: ~
         - ProjectFeatureContext: ~
-#      services: "Helpers\\Container::factory"
+        - ClassStructureFeatureContext:
+          - "@Hexarchium\\ZendCodeIntegration\\Projector\\ClassStructureProjector"
+      services: "Helpers\\Container::factory"

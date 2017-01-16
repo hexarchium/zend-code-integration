@@ -3,6 +3,7 @@
 namespace spec\Hexarchium\ZendCodeIntegration\Factory;
 
 use Hexarchium\ZendCodeIntegration\Factory\ClassStructureProjectorFactory;
+use Hexarchium\ZendCodeIntegration\File\ProjectSourceLocationStrategy;
 use Hexarchium\ZendCodeIntegration\Projector\ClassStructureProjector;
 use PhpSpec\ObjectBehavior;
 
@@ -13,9 +14,12 @@ class ClassStructureProjectorFactorySpec extends ObjectBehavior
         $this->shouldHaveType(ClassStructureProjectorFactory::class);
     }
 
-    function it_should_factory_class_structure_projector()
+    function it_should_factory_class_structure_projector(ProjectSourceLocationStrategy $projectSourceLocationStrategy)
     {
-        $this->factory()->shouldReturnAnInstanceOf(ClassStructureProjector::class);
+        $this->factory($projectSourceLocationStrategy)
+            ->shouldReturnAnInstanceOf(
+                ClassStructureProjector::class
+            );
     }
 
 }

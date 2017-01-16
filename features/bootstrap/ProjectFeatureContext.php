@@ -43,12 +43,10 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
     }
 
     /**
-     * @Given I have base project :arg1 with psr-0
+     * @Given I have base project with psr-0
      */
-    public function iHaveBaseProjectWithPsr($arg1)
+    public function iHaveBaseProjectWithPsr()
     {
-        $folder = str_replace('\\', '/', $arg1);
-        mkdir($this->workingDir . '/src/' . $folder, 0777, true);
     }
 
     /**
@@ -66,5 +64,14 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
         $this->workingDir = $dir;
         $this->process = new Process(null);
         $this->process->setTimeout(20);
+    }
+
+    /**
+     * @Then I should see new file at :arg1 in project
+     * @param $arg1
+     */
+    public function iShouldSeeNewFileAtInProject($arg1)
+    {
+        throw new \Behat\Behat\Tester\Exception\PendingException();
     }
 }

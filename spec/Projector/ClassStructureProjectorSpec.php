@@ -2,19 +2,47 @@
 
 namespace spec\Hexarchium\ZendCodeIntegration\Projector;
 
-use Hexarchium\CodeDomain\Model\ClassStructure\Events\ClassStructureAdded;
+use Hexarchium\ZendCodeIntegration\Events\ClassStructureAddedInterface;
+use Hexarchium\ZendCodeIntegration\File\ProjectSourceLocationStrategy;
 use Hexarchium\ZendCodeIntegration\Projector\ClassStructureProjector;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Argument;
+use Zend\Code\Generator\FileGenerator;
 
 class ClassStructureProjectorSpec extends ObjectBehavior
 {
+    function let(ProjectSourceLocationStrategy $projectSourceLocationStrategy)
+    {
+        $this->beConstructedWith($projectSourceLocationStrategy);
+    }
+
     function it_is_initializable()
     {
         $this->shouldHaveType(ClassStructureProjector::class);
     }
 
-    function it_should_handle_class_created_domain_event(ClassStructureAdded $classStructureAdded)
-    {
+    function it_should_handle_class_created_domain_event(
+        ProjectSourceLocationStrategy $projectSourceLocationStrategy,
+        ClassStructureAddedInterface $classStructureAdded
+    ) {
+        $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'phpspec' . DIRECTORY_SEPARATOR .
+            md5(microtime() . rand(0, 10000));
+
+        mkdir($dir . '/src/Foo', 0777, true);
+
+        /** @var FileGenerator $fileGenerator */
+        $fileGenerator = Argument::type(FileGenerator::class);
+        $projectSourceLocationStrategy
+            ->getSourcePath($fileGenerator)
+            ->willReturn(
+                $dir . '/src/Foo/Bar.php'
+            );
+        $this->beConstructedWith($projectSourceLocationStrategy);
+
+        $classStructureAdded->getName()->shouldBeCalled();
+        $classStructureAdded->getNamespace()->shouldBeCalled();
+
         $this->onClassCreated($classStructureAdded)->shouldReturn(null);
+        unlink($dir . '/src/Foo/Bar.php');
     }
 }

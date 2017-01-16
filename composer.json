@@ -5,7 +5,6 @@
   "license": "MIT",
   "time": "2017-01-13",
   "require": {
-    "hexarchium/code-domain": "^0.4",
     "zendframework/zend-code": "^3.1"
   },
   "require-dev": {

@@ -1,9 +1,22 @@
 default:
   suites:
-    default:
+    psr0:
       contexts:
         - FeatureContext: ~
-        - ProjectFeatureContext: ~
+        - ProjectFeatureContext:
+          - "@Helpers\\Container"
         - ClassStructureFeatureContext:
           - "@Hexarchium\\ZendCodeIntegration\\Projector\\ClassStructureProjector"
-      services: "Helpers\\Container::factory"
+      services: "Helpers\\ContainerPSR0Factory::factory"
+      filters:
+          tags: psr0
+    psr4:
+      contexts:
+        - FeatureContext: ~
+        - ProjectFeatureContext:
+          - "@Helpers\\Container"
+        - ClassStructureFeatureContext:
+          - "@Hexarchium\\ZendCodeIntegration\\Projector\\ClassStructureProjector"
+      services: "Helpers\\ContainerPSR4Factory::factory"
+      filters:
+          tags: psr4

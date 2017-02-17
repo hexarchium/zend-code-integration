@@ -20,13 +20,13 @@ class ClassStructureFeatureContext implements \Behat\Behat\Context\Context
     }
 
     /**
-     * @When I pick up event on created class with name :arg1 in namespace :arg2
+     * @When I pick up event on created class with name :name in namespace :namespace
      */
-    public function iPickUpEventOnCreatedClassWithNameInNamespace($arg1, $arg2)
+    public function iPickUpEventOnCreatedClassWithNameInNamespace(string $name, string $namespace)
     {
         $this->classStructureProjector->onClassCreated(
             new \Helpers\Events\ClassStructureAdded(
-                ['name' => $arg1, 'namespace' => $arg2]
+                ['name' => $name, 'namespace' => $namespace]
             )
         );
     }

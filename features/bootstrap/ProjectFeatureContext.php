@@ -1,4 +1,5 @@
 <?php
+use Helpers\Container;
 
 /**
  * Copyright
@@ -7,6 +8,14 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
 {
     /** @var  string */
     private $workingDir;
+
+    /** @var  Container */
+    private $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * Cleans test folders in the temporary directory.
@@ -39,20 +48,12 @@ class ProjectFeatureContext implements \Behat\Behat\Context\Context
     }
 
     /**
-     * @Given I have base project with psr-0
+     * @Then I should see new file at :path in project
      */
-    public function iHaveBaseProjectWithPsr()
+    public function iShouldSeeNewFileAtInProject($path)
     {
-    }
-
-    /**
-     * @Then I should see new file at :arg1 in project
-     * @param $arg1
-     */
-    public function iShouldSeeNewFileAtInProject($arg1)
-    {
-        if (!file_exists($this->workingDir . $arg1)) {
-            throw new \Exception("File not exists in: " . $this->workingDir . $arg1);
+        if (!file_exists($this->workingDir . $path)) {
+            throw new \Exception("File not exists in: " . $this->workingDir . $path);
         }
     }
 
